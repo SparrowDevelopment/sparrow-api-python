@@ -2,11 +2,12 @@ import os
 import datetime
 import urllib
 
+SPARROW_PREFIX='SPARROW'
 class Connection:
     def __init__(self, mkey=None):
         if(mkey==None):
-            if(os.environ.get('SPARROW_MKEY') is not None):
-                mkey = os.environ['SPARROW_MKEY']
+            if(os.environ.get(f"{SPARROW_PREFIX}_MKEY") is not None):
+                mkey = os.environ[f"{SPARROW_PREFIX}_MKEY"]
             else:
                 raise ConnectionError("An MKEY is required.")
         self.mkey = mkey
@@ -34,4 +35,22 @@ class CardInfo:
 class Response:
     def __init__(self, responseString):
         d = urllib.parse.parse_qs(responseString)
-        self.__dict__ = d
+        for k in d:
+            v = d[k][0]
+            self.__dict__[k] = int(v) if self.is_number(v) else v
+
+    def is_number(self, s):
+        try:
+            float(s)
+            return True
+        except ValueError:
+            pass
+ 
+        try:
+            import unicodedata
+            unicodedata.numeric(s)
+            return True
+        except (TypeError, ValueError):
+            pass
+        
+        return False
