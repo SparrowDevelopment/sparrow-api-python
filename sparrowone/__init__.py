@@ -1,8 +1,10 @@
 import os
 import datetime
 import urllib
+import requests
 
 SPARROW_PREFIX='SPARROW'
+ENDPOINT='https://secure.sparrowone.com/Payments/Services_api.aspx'
 class Connection:
     def __init__(self, mkey=None):
         if(mkey==None):
@@ -11,9 +13,15 @@ class Connection:
             else:
                 raise ConnectionError("An MKEY is required.")
         self.mkey = mkey
+        print(f"MKEY is {mkey}")
 
     def simpleSale(self, amount, cardInfo):
-        return Response("response=3")
+        payload = cardInfo.to_dict()
+        payload['mkey']=self.mkey
+        payload['transtype']='sale'
+        payload['amount']=amount
+        r = requests.post(ENDPOINT, data=payload)
+        return Response(r.text)
 
 class ConnectionError(Exception):
     pass
