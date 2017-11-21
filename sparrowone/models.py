@@ -15,6 +15,20 @@ class CardInfo(PaymentMethod):
         })
 
 
+class MilitaryStarCard(PaymentMethod):
+    allowed_methods = ["sale", "auth", "invoice.pay"]
+
+    def __init__(self, number, expiration, cid):
+        """
+        A PaymentMethod representing a Military Star card.
+        """
+        self.update({
+            "cardnum": number,
+            "cardexp": expiration,
+            "CID": cid,
+        })
+
+
 class ACHInfo(PaymentMethod):
     allowed_methods = ["sale", "credit", "invoice.pay"]
 

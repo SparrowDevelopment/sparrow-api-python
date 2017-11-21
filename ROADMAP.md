@@ -34,10 +34,10 @@ Current goal is to support as the whole [reference test suite][1].
 - [x] simple_ach_credit
 - [x] advanced_ach
 
-## star
+## [star](tests/test_star.py)
 
-- [ ] simple_star_card
-- [ ] advanced_star_card
+- [x] simple_star_card
+- [x] advanced_star_card
 
 ## ewallet
 
