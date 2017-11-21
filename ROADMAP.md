@@ -39,10 +39,14 @@ Current goal is to support as the whole [reference test suite][1].
 - [x] simple_star_card
 - [x] advanced_star_card
 
-## ewallet
+## [ewallet](tests/test_ewallet.py)
 
-- [ ] e_wallet_simple_credit
+- [x] e_wallet_simple_credit
+
+## fiserv
+
 - [ ] fiserv_simple_sale
+- [ ] advanced_fiserv_sale
 
 ## [customers](tests/test_customers.py)
 
@@ -76,7 +80,6 @@ Current goal is to support as the whole [reference test suite][1].
 
 ---
 
-- [ ] advanced_fiserv_sale
 - [ ] retrieve_card_balance
 - [ ] decrypting_custom_fields
 - [ ] account_verification

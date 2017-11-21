@@ -53,6 +53,19 @@ class ACHInfo(PaymentMethod):
             self["company"] = company
 
 
+class EWallet(PaymentMethod):
+    allowed_methods = ["credit"]
+
+    def __init__(self, account, type="PayPal"):
+        """
+        A PaymentMethod representing an eWallet (i. e. PayPal) account.
+        """
+        self.update({
+            "ewalletaccount": account,
+            "ewallet_type": type,
+        })
+
+
 class Contact(dict):
     def __init__(self, first_name=None, last_name=None, company=None,
                  address1=None, address2=None, city=None, state=None,
