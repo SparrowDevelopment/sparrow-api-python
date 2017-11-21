@@ -111,6 +111,12 @@ class Connection(object):
                           sendtransreceipttobillemail=send_receipt_to_billing_email,
                           sendtransreceipttoshipemail=send_receipt_to_shipping_email,
                           sendtransreceipttoemails=",".join(send_receipt_to))
+    
+    def chargeback(self, transid, amount, reason):
+        return self._call("chargeback",
+                          transid=transid,
+                          amount=amount,
+                          reason=reason)
 
     def offline(self, amount_or_sale, payment_method,
                 auth_code, auth_date=None):

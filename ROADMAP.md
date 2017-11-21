@@ -25,7 +25,7 @@ Current goal is to support as the whole [reference test suite][1].
 - [x] advanced_refund
 - [x] simple_void
 - [x] advanced_void
-- [ ] chargeback_entry
+- [x] chargeback_entry
 
 ## [ach](tests/test_ach.py)
 
