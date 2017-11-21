@@ -17,7 +17,7 @@ Current goal is to support as the whole [reference test suite][1].
 - [x] simple_authorization
 - [x] advanced_auth
 - [x] simple_capture
-- [ ] simple_offline_capture
+- [x] simple_offline_capture
 
 ## [refund](tests/test_refund.py)
 

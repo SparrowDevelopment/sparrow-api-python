@@ -112,6 +112,39 @@ class Connection(object):
                           sendtransreceipttoshipemail=send_receipt_to_shipping_email,
                           sendtransreceipttoemails=",".join(send_receipt_to))
 
+    def offline(self, amount_or_sale, payment_method,
+                auth_code, auth_date=None):
+        """
+        Offline Capture closes an open authorization which was manually
+        obtained from the card issuer.
+
+        Args:
+            amount_or_sale (float or .models.SaleInfo):
+                total amount to be charged
+            card_info (.models.PaymentMethod):
+                card to be charged
+            auth_code (str):
+                auth code received from the issuer
+            auth_date (str):
+                date that auth code was obtained, required for Chase only
+                (MM/DD/YYYY)
+        """
+
+        if "offline" not in payment_method.allowed_methods:
+            raise TypeError("This payment method doesn't support offline()")
+
+        if not isinstance(amount_or_sale, SaleInfo):
+            amount_or_sale = SaleInfo(amount=amount_or_sale)
+
+        kwargs = {
+            "authcode": auth_code,
+            "authdate": auth_date,
+        }
+        kwargs.update(amount_or_sale)
+        kwargs.update(payment_method)
+
+        return self._call("offline", **kwargs)
+    
     def capture(self, transid, amount, card_exp,
                send_receipt_to_billing_email=False,
                send_receipt_to_shipping_email=False,

@@ -2,7 +2,7 @@ class PaymentMethod(dict):
     pass
 
 class CardInfo(PaymentMethod):
-    allowed_methods = ["sale", "auth", "invoice.pay"]
+    allowed_methods = ["sale", "auth", "offline", "invoice.pay"]
 
     def __init__(self, number, expiration, cvv=None):
         """

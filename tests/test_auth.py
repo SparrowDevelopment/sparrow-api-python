@@ -58,12 +58,12 @@ class AuthTestCase(unittest.TestCase):
 class CaptureTestCase(unittest.TestCase):
     def setUp(self):
         self.sprw = sparrowone.Connection(M_KEY)
-        card = sparrowone.CardInfo(
+        self.card = sparrowone.CardInfo(
             number="4111111111111111",
             expiration="1019",
             cvv="999"
         )
-        resp = self.sprw.auth(10.0, card)
+        resp = self.sprw.auth(10.0, self.card)
         self.transid = resp["transid"]
         self.card_exp = "1019"
         self.amount = 10.0
@@ -71,4 +71,10 @@ class CaptureTestCase(unittest.TestCase):
     def test_simple_capture(self):
         resp = self.sprw.capture(self.transid, self.amount,
                                  card_exp=self.card_exp)
+        self.assertEqual(resp["textresponse"], "SUCCESS")
+    
+    def test_simple_offline_capture(self):
+        resp = self.sprw.offline(self.amount, self.card,
+                                 auth_code="123456",
+                                 auth_date="01/31/2017")
         self.assertEqual(resp["textresponse"], "SUCCESS")
