@@ -51,7 +51,7 @@ class Connection(object):
         # return r  # XXX
         data = dict(parse_qsl(r.text))
         if self._error(data):
-            raise SparrowAPIError(data)
+            raise SparrowAPIError(data, r)
 
         return data
 
