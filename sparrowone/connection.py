@@ -28,12 +28,24 @@ class Connection(object):
 
     def _error(self, data):
         return "errorcode" in data or data.get("response", "1") not in ["00", "1"]
+    
+    def _format_value(self, val):
+        if type(val) is bool:
+            return str(val).lower()
+        
+        return val
 
     def _call(self, transtype, **kwargs):
         kwargs.setdefault("mkey", self.m_key)
         kwargs.setdefault("transtype", transtype)
+        
+        data = {
+            k: self._format_value(v)
+            for k, v in kwargs.items()
+            if v is not None
+        }
 
-        r = requests.post(self.API_URL, data=kwargs)
+        r = requests.post(self.API_URL, data=data)
         # return r  # XXX
         data = dict(parse_qsl(r.text))
         if self._error(data):
