@@ -54,7 +54,7 @@ Current goal is to support as the whole [reference test suite][1].
 - [x] add_customer_credit_card_simple
 - [x] add_customer_ach_simple
 - [x] add_customer_e_wallet_simple
-- [ ] update_payment_type
+- [x] update_payment_type
 - [x] delete_payment_type
 - [x] delete_data_vault_customer
 

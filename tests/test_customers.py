@@ -122,7 +122,28 @@ class CustomersTestCase(unittest.TestCase):
         ))
         self.customer_token = resp["customertoken"]
         self.payment_token = resp["paymenttoken_1"]
+        
+    def test_add_payment_type(self):
+        resp = self.sprw.customers.add_payment_type(
+            self.customer_token,
+            data={
+                "paytype": "creditcard",
+                "cardnum": "4111111111111112",
+                "cardexp": "1019",
+            }
+        )
+        self.assertIn("successfully updated", resp["textresponse"])
 
+    def test_update_payment_type(self):
+        resp = self.sprw.customers.update_payment_type(
+            self.customer_token,
+            self.payment_token,
+            data={
+                "cardnum": "4111111111111112",
+            }
+        )
+        self.assertIn("successfully updated", resp["textresponse"])
+    
     def test_delete_payment_type(self):
         resp = self.sprw.customers.delete_payment_type(self.customer_token,
                                                        self.payment_token)

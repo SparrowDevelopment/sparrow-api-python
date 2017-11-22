@@ -16,6 +16,27 @@ def customer_factory(sprw):
             return sprw._call("updatecustomer", token=token, **data)
 
         @classmethod
+        def add_payment_type(cls, token, data):
+            data = {
+                ("%s_1" % k): v
+                for (k, v) in data.items()
+            }
+            return sprw._call("updatecustomer", token=token,
+                              operationtype_1="addpaytype",
+                              **data)
+        
+        @classmethod
+        def update_payment_type(cls, token, payment_token, data):
+            data = {
+                ("%s_1" % k): v
+                for (k, v) in data.items()
+            }
+            return sprw._call("updatecustomer", token=token,
+                              operationtype_1="updatepaytype",
+                              token_1=payment_token,
+                              **data)
+        
+        @classmethod
         def delete_payment_type(cls, token, payment_token):
             return sprw._call("updatecustomer", token=token,
                               operationtype_1="deletepaytype",
