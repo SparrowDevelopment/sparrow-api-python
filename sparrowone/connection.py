@@ -8,6 +8,7 @@ import requests
 from .models import PaymentMethod, SaleInfo
 from .invoices import invoice_factory
 from .customers import customer_factory
+from .plans import plan_factory
 from .errors import SparrowAPIError
 
 
@@ -25,6 +26,7 @@ class Connection(object):
         self.m_key = m_key
         self.invoices = invoice_factory(self)
         self.customers = customer_factory(self)
+        self.plans = plan_factory(self)
 
     def _error(self, data):
         return "errorcode" in data or data.get("response", "1") not in ["00", "1"]
