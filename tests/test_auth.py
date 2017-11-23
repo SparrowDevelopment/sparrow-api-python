@@ -9,7 +9,7 @@ class AuthTestCase(unittest.TestCase):
     def setUp(self):
         self.sprw = sparrowone.Connection(M_KEY)
 
-    def test_simple_sale(self):
+    def test_simple_authorization(self):
         card = sparrowone.CardInfo(
             number="4111111111111111",
             expiration="1019",
@@ -18,7 +18,7 @@ class AuthTestCase(unittest.TestCase):
         resp = self.sprw.auth(10.0, card)
         self.assertEqual(resp["textresponse"], "SUCCESS")
 
-    def test_advanced_sale(self):
+    def test_advanced_auth(self):
         sale = sparrowone.SaleInfo(
             amount=7.96,
             currency="USD",
@@ -72,7 +72,7 @@ class CaptureTestCase(unittest.TestCase):
         resp = self.sprw.capture(self.transid, self.amount,
                                  card_exp=self.card_exp)
         self.assertEqual(resp["textresponse"], "SUCCESS")
-    
+
     def test_simple_offline_capture(self):
         resp = self.sprw.offline(self.amount, self.card,
                                  auth_code="123456",
