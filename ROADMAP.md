@@ -18,6 +18,8 @@ Current goal is to support as the whole [reference test suite][1].
 - [x] advanced_auth
 - [x] simple_capture
 - [x] simple_offline_capture
+- [ ] account_verification
+- [ ] retrieve_card_balance
 
 ## [refund](tests/test_refund.py)
 
@@ -57,6 +59,7 @@ Current goal is to support as the whole [reference test suite][1].
 - [x] update_payment_type
 - [x] delete_payment_type
 - [x] delete_data_vault_customer
+- [ ] decrypting_custom_fields
 
 ## [invoices](tests/test_invoices.py)
 
@@ -77,9 +80,3 @@ Current goal is to support as the whole [reference test suite][1].
 - [x] assigning_a_payment_plan_to_a_customer
 - [x] update_payment_plan_assignment
 - [x] cancel_plan_assignment
-
----
-
-- [ ] retrieve_card_balance
-- [ ] decrypting_custom_fields
-- [ ] account_verification
