@@ -75,7 +75,7 @@ Current goal is to support as the whole [reference test suite][1].
 - [x] updating_a_payment_plan
 - [x] deleting_a_plan
 - [x] assigning_a_payment_plan_to_a_customer
-- [ ] update_payment_plan_assignment
+- [x] update_payment_plan_assignment
 - [ ] cancel_plan_assignment
 
 ---

@@ -55,13 +55,27 @@ class PlansTestCase(unittest.TestCase):
             planname="PaymentPlan1Updated",
         ))
         self.assertEqual(resp["textresponse"], "SUCCESS")
-    
+
     def test_deleting_a_plan(self):
         resp = self.sprw.plans.delete(self.plan_token)
         self.assertEqual(resp["textresponse"], "SUCCESS")
-    
+
     def test_assigning_a_payment_plan_to_a_customer(self):
         resp = self.sprw.plans.assign(self.plan_token,
                                       self.customer_token,
                                       self.payment_token)
+        self.assertEqual(resp["textresponse"], "Success")  # ???
+
+    def test_update_payment_plan_assignment(self):
+        resp = self.sprw.plans.assign(
+            self.plan_token,
+            self.customer_token,
+            self.payment_token
+        )
+        assignment_token = resp["assignmenttoken"]
+
+        resp = self.sprw.plans.update_assignment(
+            assignment_token,
+            startdate="1/1/2018"
+        )
         self.assertEqual(resp["textresponse"], "Success")  # ???

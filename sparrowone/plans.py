@@ -20,10 +20,18 @@ def plan_factory(sprw):
             return sprw._call("deleteplan", token=token)
 
         @classmethod
-        def assign(cls, token, customer_token, payment_token=None):
+        def assign(cls, token, customer_token, payment_token=None, **data):
             return sprw._call("assignplan",
                               plantoken=token,
                               customertoken=customer_token,
-                              paymenttoken=payment_token)
-    
+                              paymenttoken=payment_token,
+                              **data)
+
+        @classmethod
+        def update_assignment(cls, assignment_token, payment_token=None, **data):
+            return sprw._call("updateassignment",
+                              assignmenttoken=assignment_token,
+                              paymenttoken=payment_token,
+                              **data)
+
     return Plan
