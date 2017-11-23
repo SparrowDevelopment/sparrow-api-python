@@ -43,10 +43,10 @@ Current goal is to support as the whole [reference test suite][1].
 
 - [x] e_wallet_simple_credit
 
-## fiserv
+## [fiserv](tests/test_fiserv.py)
 
-- [ ] fiserv_simple_sale
-- [ ] advanced_fiserv_sale
+- [x] fiserv_simple_sale
+- [x] advanced_fiserv_sale
 
 ## [customers](tests/test_customers.py)
 

@@ -1,12 +1,28 @@
 class PaymentMethod(dict):
     pass
 
+
 class CardInfo(PaymentMethod):
     allowed_methods = ["sale", "auth", "offline", "invoice.pay"]
 
     def __init__(self, number, expiration, cvv=None):
         """
         A PaymentMethod representing a credit or debit card.
+        """
+        self.update({
+            "cardnum": number,
+            "cardexp": expiration,
+            "cvv": cvv,
+        })
+
+
+class FiservCard(PaymentMethod):
+    allowed_methods = ["sale"]
+
+    def __init__(self, number, expiration, cvv=None):
+        """
+        A PaymentMethod representing a credit or debit card
+        used through Fiserv.
         """
         self.update({
             "cardnum": number,
@@ -44,7 +60,7 @@ class ACHInfo(PaymentMethod):
             "achaccounttype": type,
             "achaccountsubtype": subtype,
         })
-        
+
         if first_name is not None:
             self["firstname"] = first_name
         if last_name is not None:
@@ -134,7 +150,7 @@ class SaleInfo(dict):
             # XXX: the only parameter not present on shipping address is
             # "fax", let's ignore it for now
             self.pop("shipfax", None)
-        
+
         for i, product in enumerate(products):
             self.update({
                 "skunumber_%i" % i: product.get("skunumber"),
@@ -142,7 +158,7 @@ class SaleInfo(dict):
                 "amount_%i" % i: product.get("amount"),
                 "quantity_%i" % i: product.get("quantity"),
             })
-            
+
         for i, option in enumerate(options):
             self.update({
                 "opt_amount_type_%i" % i: option.get("type"),
