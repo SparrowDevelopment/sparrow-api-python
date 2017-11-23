@@ -34,4 +34,8 @@ def plan_factory(sprw):
                               paymenttoken=payment_token,
                               **data)
 
+        @classmethod
+        def cancel_assignment(cls, assignment_token):
+            return sprw._call("cancelassignment", assignmenttoken=assignment_token)
+
     return Plan

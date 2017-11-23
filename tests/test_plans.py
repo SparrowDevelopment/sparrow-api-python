@@ -79,3 +79,14 @@ class PlansTestCase(unittest.TestCase):
             startdate="1/1/2018"
         )
         self.assertEqual(resp["textresponse"], "Success")  # ???
+
+    def test_deleting_a_plan(self):
+        resp = self.sprw.plans.assign(
+            self.plan_token,
+            self.customer_token,
+            self.payment_token
+        )
+        assignment_token = resp["assignmenttoken"]
+
+        resp = self.sprw.plans.cancel_assignment(assignment_token)
+        self.assertEqual(resp["textresponse"], "Success")
