@@ -74,7 +74,7 @@ Current goal is to support as the whole [reference test suite][1].
 - [x] creating_a_payment_plan
 - [x] updating_a_payment_plan
 - [x] deleting_a_plan
-- [ ] :x: assigning_a_payment_plan_to_a_customer: **fails** with `SparrowAPIError: User with this name already exists. Please choose another name.`
+- [x] assigning_a_payment_plan_to_a_customer
 - [ ] update_payment_plan_assignment
 - [ ] cancel_plan_assignment
 
