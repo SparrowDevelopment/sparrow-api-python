@@ -18,7 +18,7 @@ Current goal is to support as the whole [reference test suite][1].
 - [x] advanced_auth
 - [x] simple_capture
 - [x] simple_offline_capture
-- [ ] account_verification
+- [ ] :x: account_verification `SparrowAPIError: Invalid amount REFID:xxxxxxxx` — bug on the backend?
 - [ ] retrieve_card_balance
 
 ## [refund](tests/test_refund.py)

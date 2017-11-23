@@ -103,6 +103,16 @@ class Connection(object):
 
         return self._call("auth", **kwargs)
 
+    def verify(self, payment_method):
+        """
+        An Account Verification transaction is used when certain aspects
+        of the credit card are needed prior to a purchase. An Account
+        Verification transaction would be sent in as a normal Authorization
+        request with the amount of $0.
+        """
+
+        return self.auth(amount_or_sale=0, payment_method=payment_method)
+
     def refund(self, transid, amount, ach_account={},
                send_receipt_to_billing_email=False,
                send_receipt_to_shipping_email=False,
