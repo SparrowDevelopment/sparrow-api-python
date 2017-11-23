@@ -91,3 +91,31 @@ class SaleTestCase(unittest.TestCase):
 
         resp = self.sprw.sale(sale, card)
         self.assertEqual(resp["textresponse"], "SUCCESS")
+    
+    def test_passenger_sale(self):
+        sale = sparrowone.SaleInfo(
+            amount=9.95,
+            airportcode1="LAS",
+            airportcode2="CDG",
+            airportcode3="IAD",
+            airportcode4="CPH",
+            ticketnumber=1234567890,
+            flightdatecoupon1="01/31/2017",
+            flightdeparturetimecoupon1="23:59",
+            addressverificationcode="A",
+            approvalcode=123456,
+            transactionid=1234567890,
+            authcharindicator="A",
+            referencenumber=123456789012,
+            validationcode=1234,
+            authresponsecode="AB",
+        )
+
+        card = sparrowone.CardInfo(
+            number="4111111111111111",
+            expiration="1019",
+            cvv="999",
+        )
+
+        resp = self.sprw.sale(sale, card)
+        self.assertEqual(resp["textresponse"], "SUCCESS")

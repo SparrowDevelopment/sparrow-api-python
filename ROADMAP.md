@@ -10,7 +10,7 @@ Current goal is to support as the whole [reference test suite][1].
 - [x] simple_sale_invalid_card
 - [x] simple_sale_avs_mismatch
 - [x] advanced_sale
-- [ ] passenger_sale
+- [x] passenger_sale
 
 ## [auth](tests/test_auth.py)
 

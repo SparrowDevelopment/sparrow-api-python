@@ -127,7 +127,7 @@ class SaleInfo(dict):
                  ip_addr=None, order_id=None, order_desc=None,
                  tax=None, shipping_cost=None, po_number=None,
                  billing_contact=None, ship_to=None,
-                 products=[], options=[]):
+                 products=[], options=[], **kwargs):
         self.update({
             "amount": amount,
             "currency": currency,
@@ -165,3 +165,5 @@ class SaleInfo(dict):
                 "opt_amount_value_%i" % i: option.get("value"),
                 "opt_amount_percentage_%i" % i: option.get("percentage"),
             })
+        
+        self.update(kwargs)
