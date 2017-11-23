@@ -30,17 +30,17 @@ class Connection(object):
 
     def _error(self, data):
         return "errorcode" in data or data.get("response", "1") not in ["00", "1"]
-    
+
     def _format_value(self, val):
         if type(val) is bool:
             return str(val).lower()
-        
+
         return val
 
     def _call(self, transtype, **kwargs):
         kwargs.setdefault("mkey", self.m_key)
         kwargs.setdefault("transtype", transtype)
-        
+
         data = {
             k: self._format_value(v)
             for k, v in kwargs.items()
@@ -125,7 +125,7 @@ class Connection(object):
                           sendtransreceipttobillemail=send_receipt_to_billing_email,
                           sendtransreceipttoshipemail=send_receipt_to_shipping_email,
                           sendtransreceipttoemails=",".join(send_receipt_to))
-    
+
     def chargeback(self, transid, amount, reason):
         return self._call("chargeback",
                           transid=transid,
@@ -164,7 +164,7 @@ class Connection(object):
         kwargs.update(payment_method)
 
         return self._call("offline", **kwargs)
-    
+
     def capture(self, transid, amount, card_exp,
                send_receipt_to_billing_email=False,
                send_receipt_to_shipping_email=False,
