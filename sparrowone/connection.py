@@ -112,6 +112,16 @@ class Connection(object):
         """
 
         return self.auth(amount_or_sale=0, payment_method=payment_method)
+    
+    def balance_inquire(self, payment_method):
+        """
+        The Balance Inquiry operation returns the available card balance.
+        """
+
+        if "balance_inquire" not in payment_method.allowed_methods:
+            raise TypeError("This payment method doesn't support balance_inquire()")
+
+        return self._call("balanceinquire", **payment_method)
 
     def refund(self, transid, amount, ach_account={},
                send_receipt_to_billing_email=False,

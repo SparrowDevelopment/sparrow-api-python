@@ -62,6 +62,15 @@ class AuthTestCase(unittest.TestCase):
         )
         resp = self.sprw.verify(card)
         self.assertEqual(resp["textresponse"], "SUCCESS")
+        
+    def test_retrieve_card_balance(self):
+        card = sparrowone.CardInfo(
+            number="4111111111111111",
+            expiration="1019",
+            cvv="999"
+        )
+        resp = self.sprw.balance_inquire(card)
+        self.assertEqual(resp["textresponse"], "SUCCESS")
 
 
 class CaptureTestCase(unittest.TestCase):

@@ -1,4 +1,6 @@
-Current goal is to support as the whole [reference test suite][1].
+~~Current goal is to support as the whole [reference test suite][1].~~
+100% covered, but some tests are failing because of backend test mode quirks
+here and there. (The failing tests are marked with :x:.)
 
 [1]: https://github.com/SparrowDevelopment/sparrow-api-curl/blob/master/api
 
@@ -19,9 +21,10 @@ Current goal is to support as the whole [reference test suite][1].
 - [x] simple_capture
 - [x] simple_offline_capture
 - [ ] :x: account_verification `Invalid amount REFID:xxxxxxxx` — see [#3]
-- [ ] retrieve_card_balance
+- [ ] :x: retrieve_card_balance `Operation type is not supported by payment processor` — doesn't seem like a valid response to me, but accepted by [the official test suite][curl_rcb]. See also: [sparrow-api-dotnet/notes.md]
 
 [#3]: https://github.com/SparrowDevelopment/sparrow-api-python/issues/3
+[curl_rcb]: https://github.com/SparrowDevelopment/sparrow-api-curl/blob/fe0275261d9b1c7918dbe1aa2133f64dc89468c6/api#L980
 
 ## [refund](tests/test_refund.py)
 
