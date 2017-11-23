@@ -152,3 +152,11 @@ class CustomersTestCase(unittest.TestCase):
     def test_delete_data_vault_customer(self):
         resp = self.sprw.customers.delete(self.customer_token)
         self.assertEqual(resp["textresponse"], "SUCCESS")
+    
+    def test_decrypting_custom_fields(self):
+        resp = self.sprw.customers.decrypt_field(
+            self.customer_token,
+            self.payment_token,
+            field_name="customField1"
+        )
+        self.assertEqual(resp["textresponse"], "SUCCESS")

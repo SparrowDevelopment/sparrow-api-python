@@ -45,5 +45,11 @@ def customer_factory(sprw):
         @classmethod
         def delete(cls, token):
             return sprw._call("deletecustomer", token=token)
+        
+        @classmethod
+        def decrypt_field(cls, token, payment_token, field_name):
+            return sprw._call("decrypt", customertoken=token,
+                              paymenttoken=payment_token,
+                              fieldname=field_name)
 
     return Customer

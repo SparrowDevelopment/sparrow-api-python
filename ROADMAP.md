@@ -18,8 +18,10 @@ Current goal is to support as the whole [reference test suite][1].
 - [x] advanced_auth
 - [x] simple_capture
 - [x] simple_offline_capture
-- [ ] :x: account_verification `SparrowAPIError: Invalid amount REFID:xxxxxxxx` — bug on the backend?
+- [ ] :x: account_verification `Invalid amount REFID:xxxxxxxx` — see [#3]
 - [ ] retrieve_card_balance
+
+[#3]: https://github.com/SparrowDevelopment/sparrow-api-python/issues/3
 
 ## [refund](tests/test_refund.py)
 
@@ -59,7 +61,9 @@ Current goal is to support as the whole [reference test suite][1].
 - [x] update_payment_type
 - [x] delete_payment_type
 - [x] delete_data_vault_customer
-- [ ] decrypting_custom_fields
+- [ ] :x: decrypting_custom_fields `Internal processing error` — see [sparrow-api-dotnet/notes.md]
+
+[sparrow-api-dotnet/notes.md]: https://github.com/ricklove/sparrow-api-dotnet/blob/master/notes.md#decryptcustomfields
 
 ## [invoices](tests/test_invoices.py)
 
