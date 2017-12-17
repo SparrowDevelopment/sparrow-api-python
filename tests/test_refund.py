@@ -48,6 +48,6 @@ class RefundTestCase(unittest.TestCase):
         self.assertEqual(resp["textresponse"], "Transaction Void Successful")
     
     def test_chargeback_entry(self):
-        resp = self.sprw.chargeback(self.transid, self.amount,
+        resp = self.sprw.chargeback(self.transid, amount=self.amount,
                                     reason="Reason for chargeback")
         self.assertEqual(resp["textresponse"], "Reason for chargeback")  # ?

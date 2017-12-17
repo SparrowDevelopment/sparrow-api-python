@@ -71,6 +71,41 @@ class ACHInfo(PaymentMethod):
             self["company"] = company
 
 
+class ECheck(PaymentMethod):
+    allowed_methods = ["sale", "credit", "invoice.pay"]
+
+    def __init__(self, bank_name, routing, account, type, subtype,
+                 first_name=None, last_name=None, company=None,
+                 address1=None, city=None, state=None, zip=None, country=None):
+        """
+        A PaymentMethod representing an ECheck account.
+        """
+        self.update({
+            "bankname": bank_name,
+            "routing": routing,
+            "account": account,
+            "achaccounttype": type,
+            "achaccountsubtype": subtype,
+        })
+
+        if first_name is not None:
+            self["firstname"] = first_name
+        if last_name is not None:
+            self["lastname"] = last_name
+        if company is not None:
+            self["company"] = company
+        if address1 is not None:
+            self["address1"] = address1
+        if city is not None:
+            self["city"] = city
+        if state is not None:
+            self["state"] = state
+        if zip is not None:
+            self["zip"] = zip
+        if country is not None:
+            self["country"] = country
+
+
 class EWallet(PaymentMethod):
     allowed_methods = ["credit"]
 

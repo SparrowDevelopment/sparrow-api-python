@@ -26,6 +26,10 @@ def customer_factory(sprw):
                               **data)
         
         @classmethod
+        def get_payment_type(cls, payment_token):
+            return sprw._call("getcustomer", token=payment_token)
+        
+        @classmethod
         def update_payment_type(cls, token, payment_token, data):
             data = {
                 ("%s_1" % k): v

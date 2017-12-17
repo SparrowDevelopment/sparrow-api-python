@@ -146,7 +146,7 @@ class Connection(object):
                           sendtransreceipttoshipemail=send_receipt_to_shipping_email,
                           sendtransreceipttoemails=",".join(send_receipt_to))
 
-    def chargeback(self, transid, amount, reason):
+    def chargeback(self, transid, reason, amount=None):
         return self._call("chargeback",
                           transid=transid,
                           amount=amount,
